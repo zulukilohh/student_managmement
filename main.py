@@ -1,8 +1,7 @@
 import tkinter as tk
 from students import Person
 import tkinter.messagebox as messagebox
-
-
+from PIL import ImageTk, Image
 
 class StudentManagementApp(tk.Tk):
     def __init__(self):
@@ -57,8 +56,15 @@ class StudentManagementApp(tk.Tk):
         btn_delete = tk.Button(self, text='delete', command=self.delete_student)
         btn_delete.grid(row=6, column=1, padx=10, pady=10)
 
-        btn_clear = tk.Button(self, text='clear', command=self.clear_student)
+        btn_clear = tk.Button(self, text='clear', command=self.clear_entries)
         btn_clear.grid(row=7, column=0, padx=10, pady=10)
+
+        image = Image.open("photo_2022-02-28_08-05-13.jpg")
+        image = image.resize((200, 200), Image.ANTIALIAS)
+        photo = ImageTk.PhotoImage(image)
+        label_image = tk.Label(self, image=photo)
+        label_image.image = photo  # Keep a reference to avoid garbage collection
+        label_image.grid(row=8, columnspan=2, padx=10, pady=10)
 
     def add_student(self):
         meli = self.entry_id.get()
