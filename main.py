@@ -64,16 +64,27 @@ class StudentManagementApp(tk.Tk):
         btn_clear = tk.Button(self, text='clear', command=self.clear_entries)
         btn_clear.grid(row=7, column=0, padx=10, pady=10)
 
+        #imageframe
+        image_frame = tk.Frame(self, bg='lightblue')
+        image_frame.grid(row=2, column=1, padx=10, pady=10)
         #image
-        image = Image.open("example.jpg")
-        image = image.resize((100, 100), Image.BICUBIC)
-        photo = ImageTk.PhotoImage(image)
+        #image = Image.open("example.jpg")
+        #image = image.resize((100, 100), Image.BICUBIC)
+        #photo = ImageTk.PhotoImage(image)
         #self.canvas = tk.Canvas(self, width=100, height=100)
         #self.canvas.grid(row=8, columnspan=2, padx=10, pady=10)
         #self.canvas.create_image(0, 0, anchor=tk.NE, image=photo)
-        label_image = tk.Label(self, image=photo)
+        #label_image = tk.Label(self, image=photo)
+        #label_image.image = photo
+        #label_image.grid(row=2, columnspan=5, padx=(50,10), pady=10, sticky='e',)
+        image = Image.open("example.jpg")
+        image = image.resize((100, 100), Image.BICUBIC)
+        photo = ImageTk.PhotoImage(image)
+        label_image = tk.Label(image_frame, image=photo)
         label_image.image = photo
-        label_image.grid(row=2, columnspan=5, padx=10, pady=10, sticky='e')
+        label_image.pack(side='right', padx=(50, 10))
+        spacer_frame = tk.Frame(self, bg='lightblue', width=100)  # فضای خالی با عرض 100 پیکسل
+        spacer_frame.grid(row=2, column=2, sticky='e')
     def add_student(self):
         meli = self.entry_id.get()
         fist_name = self.entry_first_name.get()
