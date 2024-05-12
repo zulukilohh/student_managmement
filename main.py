@@ -8,14 +8,15 @@ class StudentManagementApp(tk.Tk):
         super().__init__()
 
         self.title('student management system')
-        self.geometry('700x700')
+        self.geometry('450x450')
         self.create_widgets()
         self.configure(bg='lightblue')
 
     def create_widgets(self):
         # label
-        lbl_id = tk.Label(self, text='code meli:', bg='pink', fg='blue', font=('Helvetica'))
+        lbl_id = tk.Label(self, text='code meli:', fg='blue') #font=('Helvetica')
         lbl_id.grid(row=0, column=0, padx=10, pady=10)
+        lbl_id.config(bg='lightblue')
 
         lbl_frist_name = tk.Label(self, text='First name:')
         lbl_frist_name.grid(row=1, column=0, padx=10, pady=10)
@@ -23,7 +24,7 @@ class StudentManagementApp(tk.Tk):
         lbl_last_name = tk.Label(self, text='last name:')
         lbl_last_name.grid(row=2, column=0, padx=10, pady=10)
 
-        lbl_age = tk.Label(self, text='age:')
+        lbl_age = tk.Label(self, text='age:', bg='green')
         lbl_age.grid(row=3, column=0, padx=10, pady=10)
 
         lbl_email = tk.Label(self, text='email:')
@@ -46,8 +47,10 @@ class StudentManagementApp(tk.Tk):
         self.entry_email.grid(row=4, column=1, padx=10, pady=10)
 
         # buttons
-        btn_add = tk.Button(self, text='add', command=self.add_student)
+        btn_add = tk.Button(self, text='add', command=self.add_student, bg='pink')
         btn_add.grid(row=5, column=0, padx=10, pady=10)
+        #add_icon = tk.PhotoImage(file="add_icon.png")
+        #btn_add.config(image=add_icon, compound="right")
 
         btn_edit = tk.Button(self, text='edit', command=self.edit_student)
         btn_edit.grid(row=5, column=1, padx=10, pady=10)
@@ -63,11 +66,14 @@ class StudentManagementApp(tk.Tk):
 
         #image
         image = Image.open("example.jpg")
-        image = image.resize((200, 200), Image.HAMMING)
+        image = image.resize((100, 100), Image.BICUBIC)
         photo = ImageTk.PhotoImage(image)
+        #self.canvas = tk.Canvas(self, width=100, height=100)
+        #self.canvas.grid(row=8, columnspan=2, padx=10, pady=10)
+        #self.canvas.create_image(0, 0, anchor=tk.NE, image=photo)
         label_image = tk.Label(self, image=photo)
         label_image.image = photo
-        label_image.grid(row=8, columnspan=1, padx=10, pady=10)
+        label_image.grid(row=2, columnspan=5, padx=10, pady=10, sticky='e')
     def add_student(self):
         meli = self.entry_id.get()
         fist_name = self.entry_first_name.get()
