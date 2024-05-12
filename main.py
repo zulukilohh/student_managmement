@@ -1,8 +1,6 @@
 import tkinter as tk
 from students import Person
 import tkinter.messagebox as messagebox
-from pil 
-
 
 class StudentManagementApp(tk.Tk):
     def __init__(self):
