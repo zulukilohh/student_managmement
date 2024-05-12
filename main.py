@@ -8,13 +8,13 @@ class StudentManagementApp(tk.Tk):
         super().__init__()
 
         self.title('student management system')
-        self.geometry('500x500')
+        self.geometry('700x700')
         self.create_widgets()
-        
+        self.configure(bg='lightblue')
 
     def create_widgets(self):
         # label
-        lbl_id = tk.Label(self, text='code meli:')
+        lbl_id = tk.Label(self, text='code meli:', bg='pink', fg='blue', font=('Helvetica'))
         lbl_id.grid(row=0, column=0, padx=10, pady=10)
 
         lbl_frist_name = tk.Label(self, text='First name:')
@@ -63,11 +63,11 @@ class StudentManagementApp(tk.Tk):
 
         #image
         image = Image.open("example.jpg")
-        image = image.resize((200, 200), Image.BICUBIC)
+        image = image.resize((200, 200), Image.HAMMING)
         photo = ImageTk.PhotoImage(image)
         label_image = tk.Label(self, image=photo)
         label_image.image = photo
-        label_image.grid(row=8, columnspan=2, padx=10, pady=10)
+        label_image.grid(row=8, columnspan=1, padx=10, pady=10)
     def add_student(self):
         meli = self.entry_id.get()
         fist_name = self.entry_first_name.get()
