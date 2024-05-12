@@ -2,7 +2,6 @@ import tkinter as tk
 from students import Person
 import tkinter.messagebox as messagebox
 from PIL import ImageTk, Image
-import os
 
 class StudentManagementApp(tk.Tk):
     def __init__(self):
@@ -11,6 +10,7 @@ class StudentManagementApp(tk.Tk):
         self.title('student management system')
         self.geometry('500x500')
         self.create_widgets()
+        
 
     def create_widgets(self):
         # label
@@ -61,15 +61,13 @@ class StudentManagementApp(tk.Tk):
         btn_clear = tk.Button(self, text='clear', command=self.clear_entries)
         btn_clear.grid(row=7, column=0, padx=10, pady=10)
 
-
-        desktop_image_path = os.path.expanduser('~/Desktop')
+        #image
         image = Image.open("example.jpg")
-        image = image.resize((200, 200), Image.ANTIALIAS)
+        image = image.resize((200, 200), Image.BICUBIC)
         photo = ImageTk.PhotoImage(image)
         label_image = tk.Label(self, image=photo)
         label_image.image = photo
         label_image.grid(row=8, columnspan=2, padx=10, pady=10)
-
     def add_student(self):
         meli = self.entry_id.get()
         fist_name = self.entry_first_name.get()
