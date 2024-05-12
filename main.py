@@ -1,7 +1,8 @@
 import tkinter as tk
 from students import Person
 import tkinter.messagebox as messagebox
-from PIL import ImageTk, Image
+
+
 
 class StudentManagementApp(tk.Tk):
     def __init__(self):
@@ -10,6 +11,14 @@ class StudentManagementApp(tk.Tk):
         self.title('student management system')
         self.geometry('500x500')
         self.create_widgets()
+
+    def show_image(image_path):
+
+        img = Image.open(image_path)
+
+        img.show()
+
+    show_image("example.jpg")
 
     def create_widgets(self):
         # label
@@ -75,7 +84,8 @@ class StudentManagementApp(tk.Tk):
             messagebox.showerror('error', 'Please')
 
     def edit_student(self):
-            pass
+        pass
+
     def view_student(self):
         pass
 
