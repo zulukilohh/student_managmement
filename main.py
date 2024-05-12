@@ -2,6 +2,7 @@ import tkinter as tk
 from students import Person
 import tkinter.messagebox as messagebox
 from PIL import ImageTk, Image
+import os
 
 class StudentManagementApp(tk.Tk):
     def __init__(self):
@@ -10,6 +11,7 @@ class StudentManagementApp(tk.Tk):
         self.title('student management system')
         self.geometry('500x500')
         self.create_widgets()
+
     def create_widgets(self):
         # label
         lbl_id = tk.Label(self, text='code meli:')
@@ -59,11 +61,13 @@ class StudentManagementApp(tk.Tk):
         btn_clear = tk.Button(self, text='clear', command=self.clear_entries)
         btn_clear.grid(row=7, column=0, padx=10, pady=10)
 
-        image = Image.open("photo_2022-02-28_08-05-13.jpg")
+
+        desktop_image_path = os.path.expanduser('~/Desktop')
+        image = Image.open("example.jpg")
         image = image.resize((200, 200), Image.ANTIALIAS)
         photo = ImageTk.PhotoImage(image)
         label_image = tk.Label(self, image=photo)
-        label_image.image = photo  # Keep a reference to avoid garbage collection
+        label_image.image = photo
         label_image.grid(row=8, columnspan=2, padx=10, pady=10)
 
     def add_student(self):
@@ -76,7 +80,7 @@ class StudentManagementApp(tk.Tk):
         if meli and fist_name and last_name and age and email:
             per1 = Person(meli, fist_name, last_name, age, email)
             messagebox.showinfo("success", "Student added!")
-            self.clear_entrise()
+            self.clear_entries()
         else:
             messagebox.showerror('error', 'Please')
 
