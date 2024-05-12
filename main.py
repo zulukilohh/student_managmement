@@ -11,15 +11,6 @@ class StudentManagementApp(tk.Tk):
         self.title('student management system')
         self.geometry('500x500')
         self.create_widgets()
-
-    def show_image(image_path):
-
-        img = Image.open(image_path)
-
-        img.show()
-
-    show_image("example.jpg")
-
     def create_widgets(self):
         # label
         lbl_id = tk.Label(self, text='code meli:')
