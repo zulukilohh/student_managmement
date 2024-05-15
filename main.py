@@ -67,18 +67,18 @@ class StudentManagementApp(tk.Tk):
 
         # imageframe
         image_frame = tk.Frame(self, bg='lightblue')
-        image_frame.grid(row=2, column=1, padx=10, pady=10)
+        image_frame.grid(row=3, column=3, padx=10, pady=10)
 
         # image
-        image = Image.open("example.jpg")
-        image = image.resize((100, 100), Image.BICUBIC)
-        photo = ImageTk.PhotoImage(image)
+        # image = Image.open("example.jpg")
+        # image = image.resize((100, 100), Image.BICUBIC)
+        # photo = ImageTk.PhotoImage(image)
         # self.canvas = tk.Canvas(self, width=100, height=100)
         # self.canvas.grid(row=8, columnspan=2, padx=10, pady=10)
         # self.canvas.create_image(0, 0, anchor=tk.NE, image=photo)
-        label_image = tk.Label(self, image=photo)
-        label_image.image = photo
-        label_image.grid(row=2, columnspan=5, padx=(50, 10), pady=10, sticky='e', )
+        # label_image = tk.Label(self,image=photo)
+        # label_image.image = photo
+        # label_image.grid(row=2, columnspan=5, padx=(50, 10), pady=10, sticky='e', )
         # image = Image.open("example.jpg")
         # image = image.resize((100, 100), Image.BICUBIC)
         # photo = ImageTk.PhotoImage(image)
