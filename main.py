@@ -146,7 +146,13 @@ class StudentManagementApp(tk.Tk):
         pass
 
     def delete_student(self):
-        pass
+        view_window = tk.Toplevel(self)
+        view_window.title("view students")
+
+        title_label = tk.Label(view_window, text="all student information", font=("Helvetica",16))
+        title_label.pack(pady=10)
+
+        
 
     def clear_entries(self):
         self.entry_id.delete(0, tk.END)
