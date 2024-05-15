@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter.ttk import Treeview
-
 from students import Person
 import tkinter.messagebox as messagebox
 from PIL import ImageTk, Image
 from db import Database
+from ttkbootstrap import Treeview
 
 
 class StudentManagementApp(tk.Tk):
@@ -154,7 +154,16 @@ class StudentManagementApp(tk.Tk):
         title_label = tk.Label(view_window, text="all student information", font=("Helvetica",16))
         title_label.pack(pady=10)
 
-        student_grid = Treeview(view_window, clumns)
+        student_grid = Treeview(view_window, columns=("meli","first_name","last_name","age","email"), show="headings")
+
+        student_grid.heading("meli", text="meli code")
+        student_grid.heading("first_name", text="fist name")
+        student_grid.heading("last_name", text="last name")
+        student_grid.heading("age", text="age")
+        student_grid.heading("email", text="email")
+        student_grid['show'] = 'heading'
+
+        students = self.database.get_all_students()
 
     def clear_entries(self):
         self.entry_id.delete(0, tk.END)
