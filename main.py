@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter.ttk import Treeview
+
 from students import Person
 import tkinter.messagebox as messagebox
 from PIL import ImageTk, Image
@@ -152,7 +154,7 @@ class StudentManagementApp(tk.Tk):
         title_label = tk.Label(view_window, text="all student information", font=("Helvetica",16))
         title_label.pack(pady=10)
 
-        
+        student_grid = Treeview(view_window, clumns)
 
     def clear_entries(self):
         self.entry_id.delete(0, tk.END)
