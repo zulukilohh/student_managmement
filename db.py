@@ -22,3 +22,14 @@ class Database:
         except Exception as e:
             print(e)
             messagebox.showwarning('error', 'Please enter')
+
+
+    def get_all_students(self):
+        try:
+            query = "SELECT * FROM students"
+            self.cursor.execute(query)
+            students = self.cursor.fetchall()
+            return students
+        except mysql.connector.Error as err:
+            messagebox.showerror("error", f"Error while connecting to MySQL: {err}")
+            return None
