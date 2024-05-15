@@ -2,6 +2,7 @@ import tkinter as tk
 from students import Person
 import tkinter.messagebox as messagebox
 from PIL import ImageTk, Image
+from db import Database
 
 
 class StudentManagementApp(tk.Tk):
@@ -12,6 +13,7 @@ class StudentManagementApp(tk.Tk):
         self.geometry('450x450')
         self.create_widgets()
         self.configure(bg='lightblue')
+        self.database = Database()
 
     def create_widgets(self):
         # label

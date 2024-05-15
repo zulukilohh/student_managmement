@@ -8,4 +8,4 @@ class Database:
             password='20138102',
             database='student_management'
         )
-        
+        self.cursor = self.connection.cursor()
