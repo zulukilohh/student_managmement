@@ -99,8 +99,9 @@ class StudentManagementApp(tk.Tk):
 
         if meli and fist_name and last_name and age and email:
             per1 = Person(meli, fist_name, last_name, age, email)
-            messagebox.showinfo("success", "Student added!")
+            self.database.add_student(per1)
             self.clear_entries()
+
         else:
             messagebox.showerror('error', 'Please')
 
