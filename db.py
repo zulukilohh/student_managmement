@@ -1,5 +1,4 @@
 from tkinter import messagebox
-
 import mysql.connector
 
 
@@ -15,7 +14,11 @@ class Database:
 
     def add_student(self, person):
         try:
-            
-
-        except:
+            query = "INSERT INTO students (meli, first_name, last_name, age, email) VALUES (%s, %s, %s, %s, %s)"
+            person = (person.meli, person.first_name, person.last_name, person.age, person.email)
+            self.cursor.execute(query, person)
+            self.connection.commit()
+            messagebox.showinfo("Student added", "Student")
+        except Exception as e:
+            print(e)
             messagebox.showwarning('error', 'Please enter')
