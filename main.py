@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter.ttk import Treeview
 from students import Person
 import tkinter.messagebox as messagebox
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 from db import Database
 from ttkbootstrap import Treeview
 
