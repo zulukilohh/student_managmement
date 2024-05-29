@@ -23,8 +23,8 @@ class StudentManagementApp(tk.Tk):
         lbl_id.grid(row=0, column=0, padx=10, pady=10)
         lbl_id.config(bg='lightblue')
 
-        lbl_frist_name = tk.Label(self, text='First name:')
-        lbl_frist_name.grid(row=1, column=0, padx=10, pady=10)
+        lbl_first_name = tk.Label(self, text='First name:')
+        lbl_first_name.grid(row=1, column=0, padx=10, pady=10)
 
         lbl_last_name = tk.Label(self, text='last name:')
         lbl_last_name.grid(row=2, column=0, padx=10, pady=10)
