@@ -70,8 +70,8 @@ class StudentManagementApp(tk.Tk):
         btn_clear.grid(row=7, column=0, padx=10, pady=10)
 
         # imageframe
-        image_frame = tk.Frame(self, bg='lightblue')
-        image_frame.grid(row=3, column=3, padx=10, pady=10)
+        #image_frame = tk.Frame(self, bg='lightblue')
+        #image_frame.grid(row=3, column=3, padx=10, pady=10)
 
         # image
         # image = Image.open("example.jpg")
@@ -117,9 +117,6 @@ class StudentManagementApp(tk.Tk):
             messagebox.showerror('Error', 'Please enter the student ID to edit.')
             return
 
-        # Here, you need to fetch the student information from your data source.
-        # For this example, let's assume you have a function to fetch a student by ID.
-        # You would replace `fetch_student_by_id` with your actual function.
         student = (student_id)
 
         # Check if student exists
@@ -161,6 +158,12 @@ class StudentManagementApp(tk.Tk):
         student_grid.heading("email", text="email")
         student_grid['show'] = 'headings'
 
+        def on_select(event):
+            item_id = student_grid.selection()[0]
+            self.select_student = student_grid.item(item_id, 'values')
+
+        student_grid.bind("<<TreeviewSelect>>", on_select)
+        
         students = self.database.get_all_students()
 
         for student in students:
