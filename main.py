@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter.ttk import Treeview
 from students import Person
 import tkinter.messagebox as messagebox
-#from PIL import ImageTk, Image
+# from PIL import ImageTk, Image
 from db import Database
 from ttkbootstrap import Treeview
 
@@ -70,8 +70,8 @@ class StudentManagementApp(tk.Tk):
         btn_clear.grid(row=7, column=0, padx=10, pady=10)
 
         # imageframe
-        #image_frame = tk.Frame(self, bg='lightblue')
-        #image_frame.grid(row=3, column=3, padx=10, pady=10)
+        # image_frame = tk.Frame(self, bg='lightblue')
+        # image_frame.grid(row=3, column=3, padx=10, pady=10)
 
         # image
         # image = Image.open("example.jpg")
@@ -108,38 +108,87 @@ class StudentManagementApp(tk.Tk):
             messagebox.showerror('error', 'Please')
 
     def edit_student(self):
+        try:
+            if self.selected_student:
+                edit_window = tk.Toplevel(self)
+                edit_window.title('edit student info')
 
-        # Get the selected student's ID
-        student_id = self.entry_id.get()
+                student_data = self.selected_student
 
-        # Check if an ID is provided
-        if not student_id:
-            messagebox.showerror('Error', 'Please enter the student ID to edit.')
-            return
+                lbl_id = tk.Label(edit_window, text='meli code')
+                lbl_id.grid(row=0, column=0, padx=10, pady=10)
+                self.entry_edit_id = tk.Entry(edit_window, state='normal')
+                self.entry_edit_id.grid(row=0, column=1, padx=10, pady=10)
+                self.entry_edit_id.insert(tk.END, student_data[0])
 
-        student = (student_id)
+                lbl_first_name = tk.Label(edit_window, text='first name')
+                lbl_first_name.grid(row=1, column=0, padx=10, pady=10)
+                self.entry_edit_first_name = tk.Entry(edit_window)
+                self.entry_edit_first_name.grid(row=1, column=1, padx=10, pady=10)
+                self.entry_edit_first_name.insert(tk.END, student_data[1])
 
-        # Check if student exists
-        if student:
-            # Populate the entry fields with student information
-            self.entry_id.delete(0, tk.END)
-            self.entry_id.insert(0, student.id)
+                lbl_last_name = tk.Label(edit_window, text='last name')
+                lbl_last_name.grid(row=2, column=0, padx=10, pady=10)
+                self.entry_edit_last_name = tk.Entry(edit_window)
+                self.entry_edit_last_name.grid(row=2, column=1, padx=10, pady=10)
+                self.entry_edit_last_name.insert(tk.END, student_data[2])
 
-            self.entry_first_name.delete(0, tk.END)
-            self.entry_first_name.insert(0, student.first_name)
+                lbl_age = tk.Label(edit_window, text='age')
+                lbl_age.grid(row=3, column=0, padx=10, pady=10)
+                self.entry_edit_age = tk.Entry(edit_window)
+                self.entry_edit_age.grid(row=3, column=1, padx=10, pady=10)
+                self.entry_edit_age.insert(tk.END, student_data[3])
 
-            self.entry_last_name.delete(0, tk.END)
-            self.entry_last_name.insert(0, student.last_name)
+                lbl_email = tk.Label(edit_window, text='email')
+                lbl_email.grid(row=4, column=0, padx=10, pady=10)
+                self.entry_edit_email = tk.Entry(edit_window)
+                self.entry_edit_email.grid(row=4, column=1, padx=10, pady=10)
+                self.entry_edit_email.insert(tk.END, student_data[4])
 
-            self.entry_age.delete(0, tk.END)
-            self.entry_age.insert(0, student.age)
+                btn_save = tk.Button(edit_window, text='Save changes',
+                                     command=lambda: self.database.update_student(self.selected_student[0],
+                                                                                  Person(self.entry_edit_id.get(),
+                                                                                         self.entry_edit_first_name.get(),
+                                                                                         self.entry_edit_last_name.get(),
+                                                                                         self.entry_edit_age.get(),
+                                                                                         self.entry_edit_email.get())))
+                btn_save.grid(row=5, column=0, padx=10, pady=10)
 
-            self.entry_email.delete(0, tk.END)
-            self.entry_email.insert(0, student.email)
-
-            messagebox.showinfo("Edit Student", "Student information populated for editing.")
-        else:
-            messagebox.showerror('Error', 'Student not found.')
+            else:
+                messagebox.showerror('warning', 'Please')
+        except Exception as e:
+            messagebox.showerror('warning', str(e))
+            # # Get the selected student's ID
+        # student_id = self.entry_id.get()
+        #
+        # # Check if an ID is provided
+        # if not student_id:
+        #     messagebox.showerror('Error', 'Please enter the student ID to edit.')
+        #     return
+        #
+        # student = (student_id)
+        #
+        # # Check if student exists
+        # if student:
+        #     # Populate the entry fields with student information
+        #     self.entry_id.delete(0, tk.END)
+        #     self.entry_id.insert(0, student.id)
+        #
+        #     self.entry_first_name.delete(0, tk.END)
+        #     self.entry_first_name.insert(0, student.first_name)
+        #
+        #     self.entry_last_name.delete(0, tk.END)
+        #     self.entry_last_name.insert(0, student.last_name)
+        #
+        #     self.entry_age.delete(0, tk.END)
+        #     self.entry_age.insert(0, student.age)
+        #
+        #     self.entry_email.delete(0, tk.END)
+        #     self.entry_email.insert(0, student.email)
+        #
+        #     messagebox.showinfo("Edit Student", "Student information populated for editing.")
+        # else:
+        #     messagebox.showerror('Error', 'Student not found.')
 
     def view_student(self):
         view_window = tk.Toplevel(self)
@@ -160,10 +209,10 @@ class StudentManagementApp(tk.Tk):
 
         def on_select(event):
             item_id = student_grid.selection()[0]
-            self.select_student = student_grid.item(item_id, 'values')
+            self.selected_student = student_grid.item(item_id, 'values')
 
         student_grid.bind("<<TreeviewSelect>>", on_select)
-        
+
         students = self.database.get_all_students()
 
         for student in students:
@@ -172,14 +221,26 @@ class StudentManagementApp(tk.Tk):
         student_grid.pack(fill=tk.BOTH, expand=True)
 
     def delete_student(self):
-        pass
+        if self.selected_student:
+            try:
+                if messagebox.askyesno("Delete"):
+                    meli_code = self.selected_student[0]
+                    self.database.delete_student(meli_code)
 
-    def clear_entries(self):
-        self.entry_id.delete(0, tk.END)
-        self.entry_first_name.delete(0, tk.END)
-        self.entry_last_name.delete(0, tk.END)
-        self.entry_age.delete(0, tk.END)
-        self.entry_email.delete(0, tk.END)
+                    self.selected_student = None
+
+            except:
+                messagebox.showerror("error", "Student")
+        else:
+            messagebox.showwarning("error", "")
+
+
+def clear_entries(self):
+    self.entry_id.delete(0, tk.END)
+    self.entry_first_name.delete(0, tk.END)
+    self.entry_last_name.delete(0, tk.END)
+    self.entry_age.delete(0, tk.END)
+    self.entry_email.delete(0, tk.END)
 
 
 if __name__ == "__main__":
